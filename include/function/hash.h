@@ -2,8 +2,10 @@
 
 #include "utility/types.h"
 
-usize i32_Hash(const void *);
-usize i64_Hash(const void *);
+typedef usize (*Hash)(const void *);
 
-usize u32_Hash(const void *);
-usize u64_Hash(const void *);
+usize i32_hash(const void *key);
+usize i64_hash(const void *key);
+
+usize u32_hash(const void *key);
+usize u64_hash(const void *key);

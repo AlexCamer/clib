@@ -27,10 +27,6 @@ typedef uint32_t u32;
 typedef uint64_t u64;
 typedef size_t usize;
 
-/* function */
-typedef i32 (*Compare)(const void *, const void *);
-typedef usize (*Hash)(const void *);
-
 /* floating point limits */
 #define F32_MIN FLT_MIN
 #define F32_MAX FLT_MAX

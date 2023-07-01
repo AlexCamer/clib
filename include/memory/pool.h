@@ -1,18 +1,18 @@
 #pragma once
 
+#include "container/stack.h"
 #include "utility/types.h"
 
 struct PoolStack;
 
 struct Pool {
-    struct PoolStack *blocks;
-    struct PoolStack *freed;
+    struct Stack blocks;
+    void *freed;
     usize offset;
-    usize elementSize;
-    usize blockSize;
+    usize value_size;
 };
 
-void Pool_Construct(struct Pool *pool, usize elementSize, usize elementsPerBlock);
-void Pool_Destruct(struct Pool *pool);
-void *Pool_Malloc(struct Pool *pool);
-void Pool_Free(struct Pool *pool, void *ptr);
+void pool_construct(struct Pool *pool, usize value_size, usize block_size);
+void pool_destruct(struct Pool *pool);
+void *pool_alloc(struct Pool *pool);
+void pool_free(struct Pool *pool, void *ptr);
