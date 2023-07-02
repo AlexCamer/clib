@@ -1,4 +1,5 @@
 #include "container/vector.h"
+#include "test/suite.h"
 #include "test/unit.h"
 
 UNIT(vector_construct_unit) {

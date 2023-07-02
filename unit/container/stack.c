@@ -1,4 +1,5 @@
 #include "container/stack.h"
+#include "test/suite.h"
 #include "test/unit.h"
 
 UNIT(stack_construct_unit) {

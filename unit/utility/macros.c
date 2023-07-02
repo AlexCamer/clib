@@ -1,3 +1,4 @@
+#include "test/suite.h"
 #include "test/unit.h"
 #include "utility/macros.h"
 

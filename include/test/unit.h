@@ -2,26 +2,20 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "utility/types.h"
 
 #define UNIT(name) \
-static void name##_func(void); \
+static void name##_func_internal(char *unit_name); \
+static void name##_func(void) { \
+    name##_func_internal(#name); \
+    printf(#name " \x1B[32mpassed\x1B[0m\n"); \
+} \
 static void (*name)(void) = &name##_func; \
-static void name##_func(void)
+static void name##_func_internal(char *unit_name)
 
 #define ASSERT(expr) \
 do { \
     if (!(expr)) { \
-        fprintf(stderr, "Suite failed @ Line: %d\n", __LINE__); \
+        fprintf(stderr, "%s \x1B[31mfailed\x1B[0m at line: %d\n", unit_name, __LINE__); \
         exit(1); \
     } \
 } while (0)
-
-#define SUITE(...) \
-i32 main(void) { \
-    void (*suite[])() = { __VA_ARGS__, NULL }; \
-    for (usize i = 0; suite[i] != NULL; i++) \
-        suite[i](); \
-    printf("Suite passed\n"); \
-    return 0; \
-}

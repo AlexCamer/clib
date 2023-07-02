@@ -1,4 +1,5 @@
 #include "memory/pool.h"
+#include "test/suite.h"
 #include "test/unit.h"
 
 #define POOL_VALUE_SIZE 29
@@ -21,16 +22,15 @@ UNIT(pool_alloc_unit) {
     struct Pool pool;
     pool_construct(&pool, POOL_VALUE_SIZE, POOL_BLOCK_SIZE);
     for (usize i = 0; i < POOL_BLOCK_COUNT; i++) {
-        for (usize j = 0; j < POOL_BLOCK_SIZE; j++) {
-            usize offset = pool.offset % pool.blocks.value_size;
-            ASSERT(stack_top_cast(&(pool.blocks), byte) + offset == pool_alloc(&pool));
-        }
+        pool_alloc(&pool);
+        for (usize j = 1; j < POOL_BLOCK_SIZE; j++)
+            ASSERT(stack_top_cast(&(pool.blocks), byte) + pool.offset == pool_alloc(&pool));
     }
     pool_destruct(&pool);
 }
 
 UNIT(pool_free_unit) {
-    struct Pool pool; /*
+    struct Pool pool;
     pool_construct(&pool, POOL_VALUE_SIZE, POOL_BLOCK_SIZE);
     void *ptrs[POOL_VALUE_SIZE][POOL_BLOCK_SIZE];
     for (usize i = 0; i < POOL_BLOCK_COUNT; i++) {
@@ -45,7 +45,7 @@ UNIT(pool_free_unit) {
         for (int j = POOL_BLOCK_COUNT - 1; j >= 0; j--)
             ASSERT(pool_alloc(&pool) == ptrs[j][i]);
     }
-    ASSERT(pool.freed == NULL); */
+    ASSERT(pool.freed == NULL);
     pool_destruct(&pool);
 }
 
