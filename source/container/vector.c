@@ -23,7 +23,7 @@ void *vector_emplace(struct Vector *vector) {
         vector->capacity = MUL2(vector->capacity);
         vector->data = xrealloc(vector->data, vector->capacity * vector->value_size);
     }
-    return vector->data + vector->size++ * PAD_EXP2(vector->value_size, 2);
+    return vector->data + vector->size++ * vector->value_size;
 }
 
 void
@@ -38,5 +38,5 @@ vector_pop(struct Vector *vector) {
 
 void *
 vector_at(const struct Vector *vector, usize index) {
-    return vector->data + index * PAD_EXP2(vector->value_size, 2);
+    return vector->data + index * vector->value_size;
 }

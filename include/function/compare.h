@@ -2,14 +2,28 @@
 
 #include "utility/types.h"
 
-typedef i32 (*Compare)(const void *, const void *);
+typedef i8 (*Compare)(const void *, const void *);
 
-i32 i8_compare(const void *element1, const void *element2);
-i32 i16_compare(const void *element1, const void *element2);
-i32 i32_compare(const void *element1, const void *element2);
-i32 i64_compare(const void *element1, const void *element2);
+i8 i8_compare(const void *value1, const void *value2);
+i8 i8_compare_reverse(const void *value1, const void *value2);
 
-i32 u8_compare(const void *element1, const void *element2);
-i32 u16_compare(const void *element1, const void *element2);
-i32 u32_compare(const void *element1, const void *element2);
-i32 u64_compare(const void *element1, const void *element2);
+i8 i16_compare(const void *value1, const void *value2);
+i8 i16_compare_reverse(const void *value1, const void *value2);
+
+i8 i32_compare(const void *value1, const void *value2);
+i8 i32_compare_reverse(const void *value1, const void *value2);
+
+i8 i64_compare(const void *value1, const void *value2);
+i8 i64_compare_reverse(const void *value1, const void *value2);
+
+i8 u8_compare(const void *value1, const void *value2);
+i8 u8_compare_reverse(const void *value1, const void *value2);
+
+i8 u16_compare(const void *value1, const void *value2);
+i8 u16_compare_reverse(const void *value1, const void *value2);
+
+i8 u32_compare(const void *value1, const void *value2);
+i8 u32_compare_reverse(const void *value1, const void *value2);
+
+i8 u64_compare(const void *value1, const void *value2);
+i8 u64_compare_reverse(const void *value1, const void *value2);

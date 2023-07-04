@@ -1,5 +1,6 @@
 project_benches += executable(
-    'sample',
-    'sample.c',
-    include_directories : project_includes
+    'stack',
+    'stack.c',
+    include_directories : project_includes,
+    link_with : container_library
 )

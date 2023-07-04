@@ -23,7 +23,7 @@ stack_emplace(struct Stack *stack) {
     struct StackNode *top = stack->top;
     stack->top = xmalloc(sizeof(struct StackNode) + stack->value_size);
     stack->top->next = top;
-    return stack->top + 1;
+    return stack_top(stack);
 }
 
 void

@@ -18,48 +18,49 @@ UNIT(vector_construct_unit) {
 
 UNIT(vector_emplace_unit) {
     struct Vector vector;
-    vector_construct(&vector, sizeof(usize));
-    for (usize i = 0; i < 256; i++) {
-        *vector_emplace_cast(&vector, usize) = i;
+    vector_construct(&vector, sizeof(u64));
+    for (u64 i = 0; i < 256; i++) {
+        *vector_emplace_cast(&vector, u64) = i;
         ASSERT(vector.size == i + 1);
         ASSERT(vector.size <= vector.capacity);
-        ASSERT(*vector_at_cast(&vector, i, usize) == i);
+        ASSERT(*vector_at_cast(&vector, i, u64) == i);
     }
     vector_destruct(&vector);
 }
 
 UNIT(vector_push_unit) {
     struct Vector vector;
-    vector_construct(&vector, sizeof(usize));
-    for (usize i = 0; i < 256; i++) {
+    vector_construct(&vector, sizeof(u64));
+    for (u64 i = 0; i < 256; i++) {
         vector_push(&vector, &i);
         ASSERT(vector.size == i + 1);
         ASSERT(vector.size <= vector.capacity);
-        ASSERT(*vector_at_cast(&vector, i, usize) == i);
+        ASSERT(*vector_at_cast(&vector, i, u64) == i);
     }
     vector_destruct(&vector);
 }
 
 UNIT(vector_pop_unit) {
     struct Vector vector;
-    vector_construct(&vector, sizeof(usize));
-    for (usize i = 0; i < 256; i++)
+    vector_construct(&vector, sizeof(u64));
+    for (u64 i = 0; i < 256; i++)
         vector_push(&vector, &i);
-    for (usize i = 256; i != 0; i--) {
+    for (u64 i = 256; i != 0; i--) {
         vector_pop(&vector);
         ASSERT(vector.size == i - 1);
-        ASSERT(*vector_at_cast(&vector, i - 1, usize) == i - 1);
+        ASSERT(vector.size <= vector.capacity);
+        ASSERT(*vector_at_cast(&vector, i - 1, u64) == i - 1);
     }
     vector_destruct(&vector);
 }
 
 UNIT(vector_at_unit) {
     struct Vector vector;
-    vector_construct(&vector, sizeof(usize));
-    for (usize i = 0; i < 256; i++)
+    vector_construct(&vector, sizeof(u64));
+    for (u64 i = 0; i < 256; i++)
         vector_push(&vector, &i);
-    for (usize i = 0; i < 256; i++)
-        ASSERT(*vector_at_cast(&vector, i, usize) == i);
+    for (u64 i = 0; i < 256; i++)
+        ASSERT(*vector_at_cast(&vector, i, u64) == i);
     vector_destruct(&vector);
 }
 

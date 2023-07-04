@@ -4,8 +4,10 @@
 #include "function/hash.h"
 #include "utility/types.h"
 
+struct HashMapBucket;
+
 struct HashMap {
-    byte *data;
+    struct HashMapBucket *buckets;
     usize size;
     usize capacity;
     usize key_size;
@@ -21,3 +23,10 @@ void hash_map_insert(struct HashMap *map, const void *key, const void *value);
 void hash_map_erase(struct HashMap *map, const void *key);
 bool hash_map_contains(const struct HashMap *map, const void *key);
 void *hash_map_at(const struct HashMap *map, const void *key);
+
+struct HashMapIterator {
+    struct HashMap *map;
+    struct HashMapBucket *bucket;
+};
+
+// ...
