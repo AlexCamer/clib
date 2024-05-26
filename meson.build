@@ -1,10 +1,6 @@
-project('clib', 'c')
+project('matching-engine', 'c')
 
-project_includes = [include_directories('include')]
+project_includes = [include_directories('src')]
 project_sources = []
-project_units = []
-project_benches = []
 
-subdir('source')
-subdir('unit')
-subdir('bench')
+subdir('src')
